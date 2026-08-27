@@ -31,15 +31,14 @@
             box-shadow: 0 10px 35px rgba(0,0,0,0.10);
         }
 
-
-        /* ================= HEADER ================= */
+        /* HEADER */
 
         .topbar {
             background: #151515;
-            padding: 24px 32px;
+            padding: 22px 32px;
             display: flex;
             align-items: center;
-            gap: 28px;
+            gap: 25px;
             color: white;
         }
 
@@ -51,96 +50,91 @@
 
         .divider {
             width: 1px;
-            height: 28px;
+            height: 30px;
             background: #555;
         }
 
         .calculator-title {
-            font-size: 17px;
+            font-size: 15px;
             font-weight: bold;
-            letter-spacing: 4px;
-            color: #e7e7e7;
+            letter-spacing: 3px;
+            color: #dddddd;
         }
 
-
-        /* ================= MAIN ================= */
+        /* MAIN */
 
         .main {
             display: grid;
-            grid-template-columns: 480px 1fr;
-            gap: 35px;
-            padding: 30px;
+            grid-template-columns: 380px 1fr;
+            gap: 25px;
+            padding: 25px;
         }
 
-
-        /* ================= LEFT PANEL ================= */
+        /* LEFT PANEL */
 
         .left-panel {
             border: 1px solid #e5e5e5;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-radius: 18px;
+            padding: 25px;
         }
 
         .icon-box {
-            width: 70px;
-            height: 70px;
+            width: 55px;
+            height: 55px;
             border: 2px solid #d2b06b;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
-            margin-bottom: 18px;
+            font-size: 26px;
+            margin-bottom: 15px;
         }
 
         .left-panel h1 {
-            font-size: 32px;
-            line-height: 1.25;
-            margin-bottom: 14px;
+            font-size: 28px;
+            line-height: 1.2;
+            margin-bottom: 10px;
         }
 
         .description {
             color: #666;
-            font-size: 16px;
-            line-height: 1.6;
+            font-size: 14px;
+            line-height: 1.5;
         }
 
         .line {
             height: 1px;
             background: #e5e5e5;
-            margin: 25px 0;
+            margin: 20px 0;
         }
 
-
-        /* ================= INPUT ================= */
+        /* INPUT */
 
         .input-group {
-            margin-bottom: 22px;
+            margin-bottom: 18px;
         }
 
         .input-group label {
             display: block;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .input-box {
             display: flex;
             border: 1px solid #ddd;
-            border-radius: 14px;
+            border-radius: 12px;
             overflow: hidden;
-            height: 64px;
+            height: 58px;
         }
 
         .currency {
-            width: 68px;
+            width: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 17px;
             background: #fafafa;
             border-right: 1px solid #ddd;
         }
@@ -148,55 +142,40 @@
         input {
             width: 100%;
             border: none;
-            padding: 0 18px;
+            padding: 0 15px;
             font-size: 18px;
             outline: none;
-            font-weight: 500;
         }
 
-        input:focus {
-            background: #fffdf8;
-        }
-
-
-        /* ================= BUTTON ================= */
+        /* BUTTON */
 
         button {
             width: 100%;
-            height: 70px;
+            height: 62px;
             border: none;
-            border-radius: 14px;
+            border-radius: 12px;
             background: #151515;
             color: #d2b06b;
-            font-size: 22px;
+            font-size: 19px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.2s;
-            margin-top: 12px;
         }
 
         button:hover {
-            transform: translateY(-2px);
-            opacity: 0.95;
+            opacity: 0.9;
         }
 
-
-        /* ================= RIGHT ================= */
-
-        .right-panel {
-            min-width: 0;
-        }
+        /* RIGHT */
 
         .section-label {
             color: #b5842c;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             letter-spacing: 1px;
-            margin: 12px 0 25px;
+            margin-bottom: 18px;
         }
 
-
-        /* ================= RESULT GRID ================= */
+        /* RESULT GRID */
 
         .result-grid {
             display: grid;
@@ -206,21 +185,17 @@
 
         .result-card {
             border: 1px solid #e6dfd2;
-            border-radius: 18px;
-            padding: 25px 18px;
+            border-radius: 16px;
+            padding: 20px 12px;
             text-align: center;
-            min-height: 310px;
+            min-height: 260px;
 
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
 
-            background: linear-gradient(
-                145deg,
-                #ffffff,
-                #faf5e9
-            );
+            background: #faf8f4;
         }
 
         .result-card.dark {
@@ -230,8 +205,8 @@
         }
 
         .result-icon {
-            width: 76px;
-            height: 76px;
+            width: 58px;
+            height: 58px;
             border: 1px solid #d8b36b;
             border-radius: 50%;
 
@@ -239,31 +214,27 @@
             align-items: center;
             justify-content: center;
 
-            font-size: 35px;
+            font-size: 26px;
             color: #b9872d;
-            margin-bottom: 25px;
-        }
-
-        .dark .result-icon {
-            color: #d2b06b;
+            margin-bottom: 18px;
         }
 
         .result-title {
-            font-size: 17px;
+            font-size: 15px;
             font-weight: bold;
-            line-height: 1.5;
-            min-height: 55px;
+            line-height: 1.4;
+            min-height: 45px;
         }
 
         .result-line {
             width: 100%;
             height: 1px;
             background: #d8c49b;
-            margin: 22px 0;
+            margin: 16px 0;
         }
 
         .result-value {
-            font-size: 38px;
+            font-size: 28px;
             font-weight: bold;
             color: #b78324;
         }
@@ -273,29 +244,28 @@
         }
 
         .small-text {
-            font-size: 13px;
+            font-size: 12px;
             color: #777;
-            margin-top: 12px;
+            margin-top: 10px;
         }
 
         .dark .small-text {
-            color: #c7c7c7;
+            color: #bbb;
         }
 
-
-        /* ================= INFO ================= */
+        /* INFO */
 
         .info-card {
-            margin-top: 25px;
+            margin-top: 20px;
             border: 1px solid #e5e5e5;
-            border-radius: 18px;
-            padding: 22px 25px;
+            border-radius: 16px;
+            padding: 18px 22px;
         }
 
         .info-title {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .info-grid {
@@ -305,52 +275,42 @@
         }
 
         .info-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding-right: 15px;
             border-right: 1px solid #ddd;
+            padding-right: 10px;
         }
 
         .info-item:last-child {
             border-right: none;
         }
 
-        .info-icon {
-            font-size: 28px;
-            color: #b78324;
-        }
-
         .info-item small {
             display: block;
-            color: #666;
-            margin-bottom: 4px;
+            color: #777;
+            margin-bottom: 5px;
         }
 
         .info-item strong {
             font-size: 15px;
         }
 
-
-        /* ================= FOOTER ================= */
+        /* FOOTER */
 
         footer {
             border-top: 1px solid #e5e5e5;
-            padding: 20px 30px;
+            padding: 15px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 20px;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .notes {
-            color: #555;
-            line-height: 1.7;
+            color: #666;
         }
 
         .notes strong {
-            color: #a8751d;
+            color: #b78324;
         }
 
         .copyright {
@@ -362,8 +322,7 @@
             font-weight: bold;
         }
 
-
-        /* ================= RESPONSIVE ================= */
+        /* RESPONSIVE */
 
         @media (max-width: 1100px) {
 
@@ -377,58 +336,14 @@
 
         }
 
-
         @media (max-width: 650px) {
-
-            body {
-                padding: 0;
-            }
-
-            .app {
-                border-radius: 0;
-            }
-
-            .topbar {
-                padding: 20px;
-                gap: 15px;
-            }
-
-            .brand {
-                font-size: 21px;
-            }
-
-            .calculator-title {
-                font-size: 11px;
-                letter-spacing: 2px;
-            }
-
-            .main {
-                padding: 20px;
-            }
-
-            .left-panel {
-                padding: 22px;
-            }
-
-            .left-panel h1 {
-                font-size: 27px;
-            }
 
             .result-grid {
                 grid-template-columns: 1fr;
             }
 
             .info-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .info-item {
-                border-right: none;
-            }
-
-            footer {
-                flex-direction: column;
-                align-items: flex-start;
+                grid-template-columns: repeat(2, 1fr);
             }
 
         }
@@ -439,9 +354,7 @@
 
 <body>
 
-
 <div class="app">
-
 
     <!-- HEADER -->
 
@@ -454,11 +367,10 @@
         <div class="divider"></div>
 
         <div class="calculator-title">
-            PROPERTY CALCULATOR
+            CALCULATOR KELAYAKAN HARTANAH
         </div>
 
     </div>
-
 
 
     <!-- MAIN -->
@@ -466,26 +378,23 @@
     <div class="main">
 
 
-        <!-- LEFT INPUT -->
+        <!-- LEFT -->
 
         <div class="left-panel">
 
             <div class="icon-box">
-                ⌂
+                🏠
             </div>
-
 
             <h1>
                 Semak Kelayakan<br>
                 Hartanah Anda
             </h1>
 
-
             <p class="description">
-                Ketahui anggaran kemampuan pembelian rumah
-                berdasarkan gaji dan komitmen bulanan anda.
+                Ketahui anggaran kelayakan pembelian rumah berdasarkan
+                gaji bersih dan komitmen bulanan anda.
             </p>
-
 
             <div class="line"></div>
 
@@ -495,7 +404,7 @@
             <div class="input-group">
 
                 <label>
-                    1. Gaji Bersih Bulanan
+                    Gaji Bersih Bulanan
                 </label>
 
                 <div class="input-box">
@@ -515,13 +424,12 @@
             </div>
 
 
-
             <!-- KOMITMEN -->
 
             <div class="input-group">
 
                 <label>
-                    2. Komitmen Bulanan
+                    Komitmen Bulanan
                 </label>
 
                 <div class="input-box">
@@ -541,29 +449,20 @@
             </div>
 
 
-
             <button onclick="calculateEligibility()">
-
-                Kira Kelayakan
-
+                KIRA KELAYAKAN
             </button>
-
 
         </div>
 
 
-
-        <!-- RIGHT RESULT -->
+        <!-- RIGHT -->
 
         <div class="right-panel">
 
-
             <div class="section-label">
-
                 HASIL KIRAAN
-
             </div>
-
 
 
             <div class="result-grid">
@@ -578,10 +477,7 @@
                     </div>
 
                     <div class="result-title">
-
-                        1. DSR Maksimum<br>
-                        (60%)
-
+                        DSR Maksimum
                     </div>
 
                     <div class="result-line"></div>
@@ -593,23 +489,23 @@
                         RM 0
                     </div>
 
+                    <div class="small-text">
+                        Gaji × 60%
+                    </div>
+
                 </div>
 
 
-
-                <!-- KELAYAKAN BULANAN -->
+                <!-- BULANAN -->
 
                 <div class="result-card">
 
                     <div class="result-icon">
-                        💳
+                        RM
                     </div>
 
                     <div class="result-title">
-
-                        2. Kelayakan<br>
-                        Bulanan
-
+                        Kelayakan Bulanan
                     </div>
 
                     <div class="result-line"></div>
@@ -621,36 +517,39 @@
                         RM 0
                     </div>
 
+                    <div class="small-text">
+                        DSR − Komitmen
+                    </div>
+
                 </div>
 
 
-
-                <!-- ANSURAN -->
+                <!-- LOAN -->
 
                 <div class="result-card">
 
                     <div class="result-icon">
-                        📅
+                        ×
                     </div>
 
                     <div class="result-title">
-
-                        3. Ansuran Maksimum<br>
-                        (Berdasarkan Bank)
-
+                        Anggaran Kelayakan Loan
                     </div>
 
                     <div class="result-line"></div>
 
                     <div
                         class="result-value"
-                        id="maxInstallment"
+                        id="loanEligibility"
                     >
                         RM 0
                     </div>
 
-                </div>
+                    <div class="small-text">
+                        Kelayakan Bulanan × 200
+                    </div>
 
+                </div>
 
 
                 <!-- RUMAH -->
@@ -658,14 +557,11 @@
                 <div class="result-card dark">
 
                     <div class="result-icon">
-                        ⌂
+                        🏠
                     </div>
 
                     <div class="result-title">
-
-                        4. Anggaran Kelayakan<br>
-                        Rumah
-
+                        Anggaran Harga Rumah
                     </div>
 
                     <div class="result-line"></div>
@@ -678,16 +574,13 @@
                     </div>
 
                     <div class="small-text">
-
-                        Anggaran Harga Rumah
-
+                        Berdasarkan Downpayment 10%
                     </div>
 
                 </div>
 
 
             </div>
-
 
 
             <!-- INFO -->
@@ -695,122 +588,74 @@
             <div class="info-card">
 
                 <div class="info-title">
-
-                    ℹ️ &nbsp; Anggaran kiraan berdasarkan:
-
+                    📌 Anggaran kiraan berdasarkan:
                 </div>
 
 
                 <div class="info-grid">
 
-
                     <div class="info-item">
 
-                        <div class="info-icon">
-                            %
-                        </div>
+                        <small>DSR Maksimum</small>
 
-                        <div>
-
-                            <small>DSR</small>
-
-                            <strong>
-                                60%
-                            </strong>
-
-                        </div>
+                        <strong>
+                            60%
+                        </strong>
 
                     </div>
 
 
-
                     <div class="info-item">
 
-                        <div class="info-icon">
-                            ♜
-                        </div>
+                        <small>Formula Loan</small>
 
-                        <div>
-
-                            <small>Interest Bank</small>
-
-                            <strong>
-                                4% setahun
-                            </strong>
-
-                        </div>
+                        <strong>
+                            Kelayakan × 200
+                        </strong>
 
                     </div>
 
 
-
                     <div class="info-item">
 
-                        <div class="info-icon">
-                            📅
-                        </div>
+                        <small>Downpayment</small>
 
-                        <div>
-
-                            <small>Tempoh Pinjaman</small>
-
-                            <strong>
-                                35 tahun
-                            </strong>
-
-                        </div>
+                        <strong>
+                            10%
+                        </strong>
 
                     </div>
 
 
-
                     <div class="info-item">
 
-                        <div class="info-icon">
-                            ◔
-                        </div>
+                        <small>Pembiayaan Bank</small>
 
-                        <div>
-
-                            <small>Downpayment</small>
-
-                            <strong>
-                                10%
-                            </strong>
-
-                        </div>
+                        <strong>
+                            90%
+                        </strong>
 
                     </div>
-
 
                 </div>
 
             </div>
 
-
         </div>
 
-
     </div>
-
 
 
     <!-- FOOTER -->
 
     <footer>
 
-
         <div class="notes">
 
             <strong>Nota:</strong>
 
-            <br>
-
-            • Kiraan ini adalah anggaran sahaja.
-
-            <br>
-
-            • Kelulusan sebenar tertakluk kepada polisi dan penilaian pihak bank.
+            Kiraan ini adalah anggaran sahaja dan kelulusan sebenar
+            tertakluk kepada polisi serta penilaian pihak bank.
 
         </div>
 
@@ -819,17 +664,14 @@
 
             © 2026
             <span>Carihouse.my</span>
-            &nbsp; | &nbsp;
-            All Rights Reserved
+            | All Rights Reserved
 
         </div>
-
 
     </footer>
 
 
 </div>
-
 
 
 <script>
@@ -854,6 +696,8 @@ function formatCurrency(number) {
 function calculateEligibility() {
 
 
+    /* INPUT */
+
     const salary = parseFloat(
         document.getElementById("salary").value
     ) || 0;
@@ -865,14 +709,14 @@ function calculateEligibility() {
 
 
 
-    /* DSR 60% */
+    /* 1. DSR MAKSIMUM */
 
     const maxDsr =
         salary * 0.60;
 
 
 
-    /* KELAYAKAN BULANAN */
+    /* 2. KELAYAKAN BULANAN */
 
     let monthlyEligibility =
         maxDsr - commitment;
@@ -886,89 +730,24 @@ function calculateEligibility() {
 
 
 
-    /*
-        INTEREST 4%
-        TEMPOH 35 TAHUN
-    */
+    /* 3. KELAYAKAN LOAN */
 
-
-    const annualInterest = 0.04;
-
-    const monthlyInterest =
-        annualInterest / 12;
-
-    const totalMonths =
-        35 * 12;
+    const loanEligibility =
+        monthlyEligibility * 200;
 
 
 
     /*
+        4. HARGA RUMAH
 
-        LOAN FORMULA
+        Bank Loan = 90%
 
-        P = M ×
-        ((1+r)^n - 1)
-
-        /
-        (r × (1+r)^n)
-
+        Harga Rumah =
+        Loan ÷ 0.90
     */
-
-
-    let loanAmount = 0;
-
-
-    if (monthlyEligibility > 0) {
-
-
-        const r =
-            monthlyInterest;
-
-
-        const n =
-            totalMonths;
-
-
-        loanAmount =
-            monthlyEligibility *
-
-            (
-                (
-                    Math.pow(
-                        1 + r,
-                        n
-                    )
-                    - 1
-                )
-
-                /
-
-                (
-                    r *
-                    Math.pow(
-                        1 + r,
-                        n
-                    )
-                )
-            );
-
-    }
-
-
-
-    /*
-        DOWNPAYMENT 10%
-
-        BANK LOAN = 90%
-
-        HARGA RUMAH =
-        LOAN / 0.90
-
-    */
-
 
     const houseEligibility =
-        loanAmount / 0.90;
+        loanEligibility / 0.90;
 
 
 
@@ -990,9 +769,9 @@ function calculateEligibility() {
 
 
     document.getElementById(
-        "maxInstallment"
+        "loanEligibility"
     ).innerText =
-        formatCurrency(monthlyEligibility);
+        formatCurrency(loanEligibility);
 
 
 
@@ -1006,7 +785,6 @@ function calculateEligibility() {
 
 
 </script>
-
 
 </body>
 </html>
