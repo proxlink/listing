@@ -31,7 +31,8 @@
             box-shadow: 0 10px 35px rgba(0,0,0,0.10);
         }
 
-        /* HEADER */
+
+        /* ================= HEADER ================= */
 
         .topbar {
             background: #151515;
@@ -61,21 +62,26 @@
             color: #dddddd;
         }
 
-        /* MAIN */
+
+        /* ================= MAIN ================= */
 
         .main {
             display: grid;
             grid-template-columns: 380px 1fr;
             gap: 25px;
             padding: 25px;
+            align-items: stretch;
         }
 
-        /* LEFT PANEL */
+
+        /* ================= LEFT PANEL ================= */
 
         .left-panel {
             border: 1px solid #e5e5e5;
             border-radius: 18px;
             padding: 25px;
+            display: flex;
+            flex-direction: column;
         }
 
         .icon-box {
@@ -108,7 +114,8 @@
             margin: 20px 0;
         }
 
-        /* INPUT */
+
+        /* ================= INPUT ================= */
 
         .input-group {
             margin-bottom: 18px;
@@ -145,9 +152,15 @@
             padding: 0 15px;
             font-size: 18px;
             outline: none;
+            background: white;
         }
 
-        /* BUTTON */
+        input:focus {
+            background: #fffdf8;
+        }
+
+
+        /* ================= BUTTON ================= */
 
         button {
             width: 100%;
@@ -159,13 +172,21 @@
             font-size: 19px;
             font-weight: bold;
             cursor: pointer;
+            margin-top: auto;
         }
 
         button:hover {
             opacity: 0.9;
         }
 
-        /* RIGHT */
+
+        /* ================= RIGHT PANEL ================= */
+
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
 
         .section-label {
             color: #b5842c;
@@ -175,20 +196,25 @@
             margin-bottom: 18px;
         }
 
-        /* RESULT GRID */
+
+        /* ================= RESULT GRID ================= */
 
         .result-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 14px;
+
+            /* Result cards isi keseluruhan tinggi */
+            flex: 1;
         }
+
 
         .result-card {
             border: 1px solid #e6dfd2;
             border-radius: 16px;
-            padding: 20px 12px;
+            padding: 25px 18px;
+
             text-align: center;
-            min-height: 260px;
 
             display: flex;
             flex-direction: column;
@@ -196,7 +222,11 @@
             justify-content: center;
 
             background: #faf8f4;
+
+            /* Sama tinggi dalam grid */
+            height: 100%;
         }
+
 
         .result-card.dark {
             background: #151515;
@@ -204,9 +234,11 @@
             border: none;
         }
 
+
         .result-icon {
-            width: 58px;
-            height: 58px;
+            width: 65px;
+            height: 65px;
+
             border: 1px solid #d8b36b;
             border-radius: 50%;
 
@@ -214,115 +246,90 @@
             align-items: center;
             justify-content: center;
 
-            font-size: 26px;
+            font-size: 30px;
             color: #b9872d;
-            margin-bottom: 18px;
+
+            margin-bottom: 22px;
         }
 
+
         .result-title {
-            font-size: 15px;
+            font-size: 17px;
             font-weight: bold;
             line-height: 1.4;
-            min-height: 45px;
         }
+
 
         .result-line {
             width: 100%;
             height: 1px;
             background: #d8c49b;
-            margin: 16px 0;
+            margin: 20px 0;
         }
 
+
         .result-value {
-            font-size: 28px;
+            font-size: 36px;
             font-weight: bold;
             color: #b78324;
         }
+
 
         .dark .result-value {
             color: #d2b06b;
         }
 
+
         .small-text {
-            font-size: 12px;
+            font-size: 13px;
             color: #777;
-            margin-top: 10px;
+            margin-top: 12px;
         }
+
 
         .dark .small-text {
             color: #bbb;
         }
 
-        /* INFO */
 
-        .info-card {
-            margin-top: 20px;
-            border: 1px solid #e5e5e5;
-            border-radius: 16px;
-            padding: 18px 22px;
-        }
-
-        .info-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
-
-        .info-item {
-            border-right: 1px solid #ddd;
-            padding-right: 10px;
-        }
-
-        .info-item:last-child {
-            border-right: none;
-        }
-
-        .info-item small {
-            display: block;
-            color: #777;
-            margin-bottom: 5px;
-        }
-
-        .info-item strong {
-            font-size: 15px;
-        }
-
-        /* FOOTER */
+        /* ================= FOOTER ================= */
 
         footer {
             border-top: 1px solid #e5e5e5;
             padding: 15px 25px;
+
             display: flex;
             justify-content: space-between;
             align-items: center;
+
             gap: 20px;
+
             font-size: 12px;
         }
+
 
         .notes {
             color: #666;
         }
 
+
         .notes strong {
             color: #b78324;
         }
 
+
         .copyright {
             white-space: nowrap;
         }
+
 
         .copyright span {
             color: #b78324;
             font-weight: bold;
         }
 
-        /* RESPONSIVE */
+
+        /* ================= RESPONSIVE ================= */
 
         @media (max-width: 1100px) {
 
@@ -331,19 +338,60 @@
             }
 
             .result-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .result-card {
+                min-height: 250px;
             }
 
         }
 
-        @media (max-width: 650px) {
+
+        @media (max-width: 800px) {
 
             .result-grid {
                 grid-template-columns: 1fr;
             }
 
-            .info-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .result-card {
+                min-height: 220px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 0;
+            }
+
+            .app {
+                border-radius: 0;
+            }
+
+            .topbar {
+                padding: 18px;
+                gap: 12px;
+            }
+
+            .brand {
+                font-size: 20px;
+            }
+
+            .calculator-title {
+                font-size: 10px;
+                letter-spacing: 1px;
+            }
+
+            .main {
+                padding: 15px;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
             }
 
         }
@@ -354,9 +402,11 @@
 
 <body>
 
+
 <div class="app">
 
-    <!-- HEADER -->
+
+    <!-- ================= HEADER ================= -->
 
     <div class="topbar">
 
@@ -373,12 +423,13 @@
     </div>
 
 
-    <!-- MAIN -->
+
+    <!-- ================= MAIN ================= -->
 
     <div class="main">
 
 
-        <!-- LEFT -->
+        <!-- ================= INPUT PANEL ================= -->
 
         <div class="left-panel">
 
@@ -386,17 +437,21 @@
                 🏠
             </div>
 
+
             <h1>
                 Semak Kelayakan<br>
                 Hartanah Anda
             </h1>
+
 
             <p class="description">
                 Ketahui anggaran kelayakan pembelian rumah berdasarkan
                 gaji bersih dan komitmen bulanan anda.
             </p>
 
+
             <div class="line"></div>
+
 
 
             <!-- GAJI -->
@@ -407,11 +462,13 @@
                     Gaji Bersih Bulanan
                 </label>
 
+
                 <div class="input-box">
 
                     <div class="currency">
                         RM
                     </div>
+
 
                     <input
                         type="number"
@@ -424,6 +481,7 @@
             </div>
 
 
+
             <!-- KOMITMEN -->
 
             <div class="input-group">
@@ -432,11 +490,13 @@
                     Komitmen Bulanan
                 </label>
 
+
                 <div class="input-box">
 
                     <div class="currency">
                         RM
                     </div>
+
 
                     <input
                         type="number"
@@ -449,20 +509,31 @@
             </div>
 
 
+
+            <!-- BUTTON -->
+
             <button onclick="calculateEligibility()">
+
                 KIRA KELAYAKAN
+
             </button>
+
 
         </div>
 
 
-        <!-- RIGHT -->
+
+        <!-- ================= RESULT PANEL ================= -->
 
         <div class="right-panel">
 
+
             <div class="section-label">
+
                 HASIL KIRAAN
+
             </div>
+
 
 
             <div class="result-grid">
@@ -476,11 +547,16 @@
                         %
                     </div>
 
+
                     <div class="result-title">
+
                         DSR Maksimum
+
                     </div>
 
+
                     <div class="result-line"></div>
+
 
                     <div
                         class="result-value"
@@ -489,14 +565,18 @@
                         RM 0
                     </div>
 
+
                     <div class="small-text">
-                        Gaji × 60%
+
+                        Gaji Bersih × 60%
+
                     </div>
 
                 </div>
 
 
-                <!-- BULANAN -->
+
+                <!-- KELAYAKAN BULANAN -->
 
                 <div class="result-card">
 
@@ -504,11 +584,16 @@
                         RM
                     </div>
 
+
                     <div class="result-title">
+
                         Kelayakan Bulanan
+
                     </div>
 
+
                     <div class="result-line"></div>
+
 
                     <div
                         class="result-value"
@@ -517,42 +602,18 @@
                         RM 0
                     </div>
 
+
                     <div class="small-text">
-                        DSR − Komitmen
+
+                        DSR − Komitmen Bulanan
+
                     </div>
 
                 </div>
 
 
-                <!-- LOAN -->
 
-                <div class="result-card">
-
-                    <div class="result-icon">
-                        ×
-                    </div>
-
-                    <div class="result-title">
-                        Anggaran Kelayakan Loan
-                    </div>
-
-                    <div class="result-line"></div>
-
-                    <div
-                        class="result-value"
-                        id="loanEligibility"
-                    >
-                        RM 0
-                    </div>
-
-                    <div class="small-text">
-                        Kelayakan Bulanan × 200
-                    </div>
-
-                </div>
-
-
-                <!-- RUMAH -->
+                <!-- HARGA RUMAH -->
 
                 <div class="result-card dark">
 
@@ -560,11 +621,16 @@
                         🏠
                     </div>
 
+
                     <div class="result-title">
+
                         Anggaran Harga Rumah
+
                     </div>
 
+
                     <div class="result-line"></div>
+
 
                     <div
                         class="result-value"
@@ -573,8 +639,11 @@
                         RM 0
                     </div>
 
+
                     <div class="small-text">
-                        Berdasarkan Downpayment 10%
+
+                        Kelayakan Bulanan × 200
+
                     </div>
 
                 </div>
@@ -582,73 +651,18 @@
 
             </div>
 
-
-            <!-- INFO -->
-
-            <div class="info-card">
-
-                <div class="info-title">
-                    📌 Anggaran kiraan berdasarkan:
-                </div>
-
-
-                <div class="info-grid">
-
-                    <div class="info-item">
-
-                        <small>DSR Maksimum</small>
-
-                        <strong>
-                            60%
-                        </strong>
-
-                    </div>
-
-
-                    <div class="info-item">
-
-                        <small>Formula Loan</small>
-
-                        <strong>
-                            Kelayakan × 200
-                        </strong>
-
-                    </div>
-
-
-                    <div class="info-item">
-
-                        <small>Downpayment</small>
-
-                        <strong>
-                            10%
-                        </strong>
-
-                    </div>
-
-
-                    <div class="info-item">
-
-                        <small>Pembiayaan Bank</small>
-
-                        <strong>
-                            90%
-                        </strong>
-
-                    </div>
-
-                </div>
-
-            </div>
 
         </div>
+
 
     </div>
 
 
-    <!-- FOOTER -->
+
+    <!-- ================= FOOTER ================= -->
 
     <footer>
+
 
         <div class="notes">
 
@@ -660,6 +674,7 @@
         </div>
 
 
+
         <div class="copyright">
 
             © 2026
@@ -668,10 +683,12 @@
 
         </div>
 
+
     </footer>
 
 
 </div>
+
 
 
 <script>
@@ -691,6 +708,9 @@ function formatCurrency(number) {
 
 }
 
+
+
+/* ================= KIRA KELAYAKAN ================= */
 
 
 function calculateEligibility() {
@@ -722,6 +742,8 @@ function calculateEligibility() {
         maxDsr - commitment;
 
 
+    /* ELAK NILAI NEGATIF */
+
     if (monthlyEligibility < 0) {
 
         monthlyEligibility = 0;
@@ -730,29 +752,14 @@ function calculateEligibility() {
 
 
 
-    /* 3. KELAYAKAN LOAN */
+    /* 3. ANGGARAN HARGA RUMAH */
 
-    const loanEligibility =
+    const houseEligibility =
         monthlyEligibility * 200;
 
 
 
-    /*
-        4. HARGA RUMAH
-
-        Bank Loan = 90%
-
-        Harga Rumah =
-        Loan ÷ 0.90
-    */
-
-    const houseEligibility =
-        loanEligibility / 0.90;
-
-
-
-    /* DISPLAY */
-
+    /* DISPLAY DSR */
 
     document.getElementById(
         "maxDsr"
@@ -761,6 +768,8 @@ function calculateEligibility() {
 
 
 
+    /* DISPLAY KELAYAKAN BULANAN */
+
     document.getElementById(
         "monthlyEligibility"
     ).innerText =
@@ -768,12 +777,7 @@ function calculateEligibility() {
 
 
 
-    document.getElementById(
-        "loanEligibility"
-    ).innerText =
-        formatCurrency(loanEligibility);
-
-
+    /* DISPLAY HARGA RUMAH */
 
     document.getElementById(
         "houseEligibility"
@@ -784,7 +788,25 @@ function calculateEligibility() {
 }
 
 
+/* ENTER UNTUK KIRA */
+
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Enter") {
+
+            calculateEligibility();
+
+        }
+
+    }
+);
+
+
 </script>
+
 
 </body>
 </html>
