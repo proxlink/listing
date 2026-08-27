@@ -23,7 +23,7 @@
         }
 
         .app {
-            max-width: 1500px;
+            max-width: 1700px;
             margin: auto;
             background: #ffffff;
             border-radius: 20px;
@@ -32,11 +32,11 @@
         }
 
 
-        /* ================= HEADER ================= */
+        /* HEADER */
 
         .topbar {
             background: #151515;
-            padding: 22px 32px;
+            padding: 22px 35px;
             display: flex;
             align-items: center;
             gap: 25px;
@@ -44,104 +44,114 @@
         }
 
         .brand {
-            font-size: 28px;
+            font-size: 30px;
             font-weight: bold;
             color: #d2b06b;
         }
 
         .divider {
             width: 1px;
-            height: 30px;
+            height: 32px;
             background: #555;
         }
 
         .calculator-title {
-            font-size: 15px;
+            font-size: 17px;
             font-weight: bold;
             letter-spacing: 3px;
             color: #dddddd;
         }
 
 
-        /* ================= MAIN ================= */
+        /* MAIN */
 
         .main {
             display: grid;
-            grid-template-columns: 380px 1fr;
+            grid-template-columns: 430px 1fr;
             gap: 25px;
-            padding: 25px;
+            padding: 28px;
             align-items: stretch;
         }
 
 
-        /* ================= LEFT PANEL ================= */
+        /* LEFT PANEL */
 
         .left-panel {
-            border: 1px solid #e5e5e5;
-            border-radius: 18px;
-            padding: 25px;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 32px;
+
             display: flex;
             flex-direction: column;
         }
 
         .icon-box {
-            width: 55px;
-            height: 55px;
-            border: 2px solid #d2b06b;
+            width: 65px;
+            height: 65px;
+
+            border: 1px solid #d2b06b;
             border-radius: 50%;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 26px;
-            margin-bottom: 15px;
+
+            font-size: 30px;
+            margin-bottom: 18px;
         }
 
         .left-panel h1 {
-            font-size: 28px;
+            font-size: 34px;
             line-height: 1.2;
-            margin-bottom: 10px;
+            margin-bottom: 14px;
         }
 
         .description {
             color: #666;
-            font-size: 14px;
-            line-height: 1.5;
+            font-size: 16px;
+            line-height: 1.55;
         }
 
         .line {
             height: 1px;
-            background: #e5e5e5;
-            margin: 20px 0;
+            background: #e1e1e1;
+            margin: 24px 0;
         }
 
 
-        /* ================= INPUT ================= */
+        /* INPUT */
 
         .input-group {
-            margin-bottom: 18px;
+            margin-bottom: 22px;
         }
 
         .input-group label {
             display: block;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .input-box {
             display: flex;
-            border: 1px solid #ddd;
-            border-radius: 12px;
+            height: 70px;
+
+            border: 1px solid #d8d8d8;
+            border-radius: 14px;
+
             overflow: hidden;
-            height: 58px;
         }
 
         .currency {
-            width: 60px;
+            width: 65px;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
+            font-size: 17px;
             font-weight: bold;
+
             background: #fafafa;
             border-right: 1px solid #ddd;
         }
@@ -149,9 +159,12 @@
         input {
             width: 100%;
             border: none;
-            padding: 0 15px;
-            font-size: 18px;
+
+            padding: 0 20px;
+
+            font-size: 20px;
             outline: none;
+
             background: white;
         }
 
@@ -160,27 +173,32 @@
         }
 
 
-        /* ================= BUTTON ================= */
+        /* BUTTON */
 
         button {
             width: 100%;
-            height: 62px;
+            height: 75px;
+
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
+
             background: #151515;
             color: #d2b06b;
-            font-size: 19px;
+
+            font-size: 20px;
             font-weight: bold;
+
             cursor: pointer;
+
             margin-top: auto;
         }
 
         button:hover {
-            opacity: 0.9;
+            opacity: 0.92;
         }
 
 
-        /* ================= RIGHT PANEL ================= */
+        /* RIGHT PANEL */
 
         .right-panel {
             display: flex;
@@ -189,132 +207,160 @@
         }
 
         .section-label {
-            color: #b5842c;
-            font-size: 16px;
+            color: #a8782b;
+
+            font-size: 17px;
             font-weight: bold;
-            letter-spacing: 1px;
+
+            letter-spacing: 1.5px;
+
             margin-bottom: 18px;
         }
 
 
-        /* ================= RESULT GRID ================= */
+        /* RESULT GRID */
 
         .result-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
 
-            /* Result cards isi keseluruhan tinggi */
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 25px;
+
             flex: 1;
         }
 
 
-        .result-card {
-            border: 1px solid #e6dfd2;
-            border-radius: 16px;
-            padding: 25px 18px;
+        /* RESULT CARD */
 
-            text-align: center;
+        .result-card {
+            border: 1px solid #ddd6c8;
+
+            border-radius: 20px;
+
+            padding: 30px 28px;
 
             display: flex;
             flex-direction: column;
+
             align-items: center;
             justify-content: center;
 
-            background: #faf8f4;
+            text-align: center;
 
-            /* Sama tinggi dalam grid */
-            height: 100%;
+            background: #faf8f4;
         }
 
 
-        .result-card.dark {
+        /* TOP RESULT CARDS */
+
+        .top-results {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 25px;
+        }
+
+
+        /* HOUSE RESULT */
+
+        .house-card {
+            grid-column: 1 / -1;
+
             background: #151515;
-            color: white;
+
             border: none;
+
+            min-height: 315px;
+
+            color: white;
         }
 
 
         .result-icon {
-            width: 65px;
-            height: 65px;
+            width: 74px;
+            height: 74px;
 
-            border: 1px solid #d8b36b;
+            border: 1px solid #d2b06b;
             border-radius: 50%;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
-            font-size: 30px;
-            color: #b9872d;
+            font-size: 34px;
+
+            color: #b78324;
 
             margin-bottom: 22px;
         }
 
 
         .result-title {
-            font-size: 17px;
+            font-size: 20px;
+
             font-weight: bold;
-            line-height: 1.4;
+
+            margin-bottom: 22px;
         }
 
 
         .result-line {
             width: 100%;
+
             height: 1px;
-            background: #d8c49b;
-            margin: 20px 0;
+
+            background: #d2b06b;
+
+            margin-bottom: 25px;
+
+            opacity: 0.8;
         }
 
 
         .result-value {
-            font-size: 36px;
+            font-size: 42px;
+
             font-weight: bold;
-            color: #b78324;
+
+            color: #a97927;
         }
 
 
-        .dark .result-value {
+        .house-card .result-value {
             color: #d2b06b;
+
+            font-size: 52px;
         }
 
 
-        .small-text {
-            font-size: 13px;
-            color: #777;
-            margin-top: 12px;
-        }
-
-
-        .dark .small-text {
-            color: #bbb;
-        }
-
-
-        /* ================= FOOTER ================= */
+        /* FOOTER */
 
         footer {
             border-top: 1px solid #e5e5e5;
-            padding: 15px 25px;
+
+            padding: 15px 30px;
 
             display: flex;
+
             justify-content: space-between;
             align-items: center;
 
             gap: 20px;
 
-            font-size: 12px;
+            font-size: 13px;
         }
 
 
         .notes {
-            color: #666;
+            color: #555;
         }
 
 
         .notes strong {
-            color: #b78324;
+            color: #a8782b;
         }
 
 
@@ -324,12 +370,12 @@
 
 
         .copyright span {
-            color: #b78324;
+            color: #a8782b;
             font-weight: bold;
         }
 
 
-        /* ================= RESPONSIVE ================= */
+        /* RESPONSIVE */
 
         @media (max-width: 1100px) {
 
@@ -337,31 +383,10 @@
                 grid-template-columns: 1fr;
             }
 
-            .result-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .result-card {
-                min-height: 250px;
-            }
-
         }
 
 
-        @media (max-width: 800px) {
-
-            .result-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .result-card {
-                min-height: 220px;
-            }
-
-        }
-
-
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
 
             body {
                 padding: 0;
@@ -373,20 +398,35 @@
 
             .topbar {
                 padding: 18px;
-                gap: 12px;
             }
 
             .brand {
-                font-size: 20px;
+                font-size: 22px;
             }
 
             .calculator-title {
-                font-size: 10px;
+                font-size: 11px;
                 letter-spacing: 1px;
             }
 
             .main {
-                padding: 15px;
+                padding: 18px;
+            }
+
+            .left-panel {
+                padding: 25px;
+            }
+
+            .left-panel h1 {
+                font-size: 28px;
+            }
+
+            .top-results {
+                grid-template-columns: 1fr;
+            }
+
+            .house-card {
+                min-height: 250px;
             }
 
             footer {
@@ -406,7 +446,7 @@
 <div class="app">
 
 
-    <!-- ================= HEADER ================= -->
+    <!-- HEADER -->
 
     <div class="topbar">
 
@@ -424,14 +464,15 @@
 
 
 
-    <!-- ================= MAIN ================= -->
+    <!-- MAIN -->
 
     <div class="main">
 
 
-        <!-- ================= INPUT PANEL ================= -->
+        <!-- LEFT PANEL -->
 
         <div class="left-panel">
+
 
             <div class="icon-box">
                 🏠
@@ -469,7 +510,6 @@
                         RM
                     </div>
 
-
                     <input
                         type="number"
                         id="salary"
@@ -497,7 +537,6 @@
                         RM
                     </div>
 
-
                     <input
                         type="number"
                         id="commitment"
@@ -513,9 +552,7 @@
             <!-- BUTTON -->
 
             <button onclick="calculateEligibility()">
-
                 KIRA KELAYAKAN
-
             </button>
 
 
@@ -523,17 +560,14 @@
 
 
 
-        <!-- ================= RESULT PANEL ================= -->
+        <!-- RIGHT PANEL -->
 
         <div class="right-panel">
 
 
             <div class="section-label">
-
                 HASIL KIRAAN
-
             </div>
-
 
 
             <div class="result-grid">
@@ -549,9 +583,7 @@
 
 
                     <div class="result-title">
-
                         DSR Maksimum
-
                     </div>
 
 
@@ -565,12 +597,6 @@
                         RM 0
                     </div>
 
-
-                    <div class="small-text">
-
-                        Gaji Bersih × 60%
-
-                    </div>
 
                 </div>
 
@@ -586,9 +612,7 @@
 
 
                     <div class="result-title">
-
                         Kelayakan Bulanan
-
                     </div>
 
 
@@ -603,19 +627,13 @@
                     </div>
 
 
-                    <div class="small-text">
-
-                        DSR − Komitmen Bulanan
-
-                    </div>
-
                 </div>
 
 
 
                 <!-- HARGA RUMAH -->
 
-                <div class="result-card dark">
+                <div class="result-card house-card">
 
                     <div class="result-icon">
                         🏠
@@ -623,9 +641,7 @@
 
 
                     <div class="result-title">
-
                         Anggaran Harga Rumah
-
                     </div>
 
 
@@ -640,12 +656,6 @@
                     </div>
 
 
-                    <div class="small-text">
-
-                        Kelayakan Bulanan × 200
-
-                    </div>
-
                 </div>
 
 
@@ -659,20 +669,16 @@
 
 
 
-    <!-- ================= FOOTER ================= -->
+    <!-- FOOTER -->
 
     <footer>
-
 
         <div class="notes">
 
             <strong>Nota:</strong>
-
-            Kiraan ini adalah anggaran sahaja dan kelulusan sebenar
-            tertakluk kepada polisi serta penilaian pihak bank.
+            Kiraan ini adalah anggaran sahaja dan kelulusan sebenar tertakluk kepada polisi serta penilaian pihak bank.
 
         </div>
-
 
 
         <div class="copyright">
@@ -682,7 +688,6 @@
             | All Rights Reserved
 
         </div>
-
 
     </footer>
 
@@ -710,13 +715,8 @@ function formatCurrency(number) {
 
 
 
-/* ================= KIRA KELAYAKAN ================= */
-
-
 function calculateEligibility() {
 
-
-    /* INPUT */
 
     const salary = parseFloat(
         document.getElementById("salary").value
@@ -729,20 +729,17 @@ function calculateEligibility() {
 
 
 
-    /* 1. DSR MAKSIMUM */
+    /* DSR 60% */
 
-    const maxDsr =
-        salary * 0.60;
-
+    const maxDsr = salary * 0.60;
 
 
-    /* 2. KELAYAKAN BULANAN */
+
+    /* KELAYAKAN BULANAN */
 
     let monthlyEligibility =
         maxDsr - commitment;
 
-
-    /* ELAK NILAI NEGATIF */
 
     if (monthlyEligibility < 0) {
 
@@ -752,14 +749,14 @@ function calculateEligibility() {
 
 
 
-    /* 3. ANGGARAN HARGA RUMAH */
+    /* ANGGARAN HARGA RUMAH */
 
     const houseEligibility =
         monthlyEligibility * 200;
 
 
 
-    /* DISPLAY DSR */
+    /* DISPLAY */
 
     document.getElementById(
         "maxDsr"
@@ -768,16 +765,12 @@ function calculateEligibility() {
 
 
 
-    /* DISPLAY KELAYAKAN BULANAN */
-
     document.getElementById(
         "monthlyEligibility"
     ).innerText =
         formatCurrency(monthlyEligibility);
 
 
-
-    /* DISPLAY HARGA RUMAH */
 
     document.getElementById(
         "houseEligibility"
@@ -788,8 +781,8 @@ function calculateEligibility() {
 }
 
 
-/* ENTER UNTUK KIRA */
 
+/* ENTER UNTUK KIRA */
 
 document.addEventListener(
     "keydown",
