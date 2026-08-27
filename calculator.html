@@ -14,6 +14,12 @@
             padding: 0;
         }
 
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background: #f3f3f1;
@@ -53,6 +59,7 @@
             width: 1px;
             height: 32px;
             background: #555;
+            flex-shrink: 0;
         }
 
         .calculator-title {
@@ -67,10 +74,11 @@
 
         .main {
             display: grid;
-            grid-template-columns: 430px 1fr;
+            grid-template-columns: 430px minmax(0, 1fr);
             gap: 25px;
             padding: 28px;
             align-items: stretch;
+            min-width: 0;
         }
 
 
@@ -83,6 +91,7 @@
 
             display: flex;
             flex-direction: column;
+            min-width: 0;
         }
 
         .icon-box {
@@ -140,10 +149,13 @@
             border-radius: 14px;
 
             overflow: hidden;
+            width: 100%;
+            min-width: 0;
         }
 
         .currency {
             width: 65px;
+            flex-shrink: 0;
 
             display: flex;
             align-items: center;
@@ -158,6 +170,7 @@
 
         input {
             width: 100%;
+            min-width: 0;
             border: none;
 
             padding: 0 20px;
@@ -204,6 +217,7 @@
             display: flex;
             flex-direction: column;
             min-width: 0;
+            width: 100%;
         }
 
         .section-label {
@@ -222,12 +236,11 @@
 
         .result-grid {
             display: grid;
-
-            grid-template-columns: repeat(2, 1fr);
-
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 25px;
-
             flex: 1;
+            width: 100%;
+            min-width: 0;
         }
 
 
@@ -249,17 +262,9 @@
             text-align: center;
 
             background: #faf8f4;
-        }
 
-
-        /* TOP RESULT CARDS */
-
-        .top-results {
-            display: grid;
-
-            grid-template-columns: repeat(2, 1fr);
-
-            gap: 25px;
+            min-width: 0;
+            width: 100%;
         }
 
 
@@ -295,6 +300,7 @@
             color: #b78324;
 
             margin-bottom: 22px;
+            flex-shrink: 0;
         }
 
 
@@ -326,6 +332,10 @@
             font-weight: bold;
 
             color: #a97927;
+
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            word-break: break-word;
         }
 
 
@@ -375,7 +385,7 @@
         }
 
 
-        /* RESPONSIVE */
+        /* TABLET */
 
         @media (max-width: 1100px) {
 
@@ -386,52 +396,138 @@
         }
 
 
+        /* MOBILE */
+
         @media (max-width: 700px) {
 
             body {
                 padding: 0;
+                overflow-x: hidden;
             }
 
             .app {
                 border-radius: 0;
+                width: 100%;
+                max-width: 100%;
+                overflow: hidden;
             }
 
             .topbar {
                 padding: 18px;
+                gap: 12px;
+                width: 100%;
+                min-width: 0;
             }
 
             .brand {
                 font-size: 22px;
+                white-space: nowrap;
             }
 
             .calculator-title {
                 font-size: 11px;
                 letter-spacing: 1px;
+                min-width: 0;
             }
 
             .main {
+                grid-template-columns: 1fr;
                 padding: 18px;
+                width: 100%;
+                min-width: 0;
             }
 
             .left-panel {
                 padding: 25px;
+                width: 100%;
+                min-width: 0;
             }
 
             .left-panel h1 {
                 font-size: 28px;
             }
 
-            .top-results {
-                grid-template-columns: 1fr;
+
+            /* RESULT JADI 1 KOLUM */
+
+            .right-panel {
+                width: 100%;
+                min-width: 0;
             }
 
-            .house-card {
-                min-height: 250px;
+            .result-grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 18px;
+                width: 100%;
+                min-width: 0;
             }
+
+
+            /* KOTAK RESULT */
+
+            .result-card {
+                width: 100%;
+                min-width: 0;
+                max-width: 100%;
+
+                padding: 30px 18px;
+
+                overflow: hidden;
+            }
+
+
+            /* HARGA RUMAH */
+
+            .house-card {
+                grid-column: auto;
+
+                min-height: 250px;
+
+                width: 100%;
+                max-width: 100%;
+            }
+
+
+            /* NOMBOR RESULT */
+
+            .result-value {
+                font-size: clamp(28px, 9vw, 42px);
+                max-width: 100%;
+                overflow-wrap: anywhere;
+                word-break: break-word;
+            }
+
+
+            .house-card .result-value {
+                font-size: clamp(34px, 10vw, 48px);
+            }
+
+
+            /* INPUT */
+
+            .input-box {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            input {
+                min-width: 0;
+            }
+
+
+            /* FOOTER */
 
             footer {
                 flex-direction: column;
                 align-items: flex-start;
+
+                padding: 15px 20px;
+
+                width: 100%;
+            }
+
+            .copyright {
+                white-space: normal;
             }
 
         }
