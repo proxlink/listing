@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculator Kelayakan Hartanah</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f5f7;
+            color: #1f2937;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 520px;
+            margin: auto;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: #151515;
+            color: white;
+            padding: 35px 25px 70px;
+            border-radius: 24px 24px 0 0;
+        }
+
+        .logo {
+            font-size: 14px;
+            letter-spacing: 4px;
+            font-weight: bold;
+            color: #d4b67a;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 30px;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #bdbdbd;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        /* CARD */
+
+        .calculator-card {
+            background: white;
+            border-radius: 24px;
+            padding: 25px;
+            margin-top: -35px;
+            position: relative;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .currency {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: bold;
+            color: #6b7280;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px 16px 16px 48px;
+            border-radius: 14px;
+            border: 1px solid #e5e7eb;
+            font-size: 17px;
+            font-weight: 600;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #d4b67a;
+            box-shadow: 0 0 0 3px rgba(212,182,122,0.15);
+        }
+
+        /* BUTTON */
+
+        button {
+            width: 100%;
+            padding: 17px;
+            border: none;
+            border-radius: 14px;
+            background: #151515;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* RESULT */
+
+        .results {
+            margin-top: 25px;
+        }
+
+        .result-card {
+            border: 1px solid #ececec;
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 14px;
+            background: #fafafa;
+        }
+
+        .result-title {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .result-value {
+            font-size: 25px;
+            font-weight: bold;
+            color: #1f2937;
+        }
+
+        .highlight {
+            background: #151515;
+            color: white;
+            border: none;
+        }
+
+        .highlight .result-title {
+            color: #bdbdbd;
+        }
+
+        .highlight .result-value {
+            color: #d4b67a;
+            font-size: 30px;
+        }
+
+        /* INFO */
+
+        .info {
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 14px;
+            background: #f8f8f8;
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        .info strong {
+            color: #1f2937;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 25px;
+            padding-bottom: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <div class="logo">
+            PROPERTY CALCULATOR
+        </div>
+
+        <h1>
+            Semak Kelayakan<br>
+            Hartanah Anda
+        </h1>
+
+        <p class="subtitle">
+            Ketahui anggaran kemampuan pembelian rumah berdasarkan gaji dan komitmen bulanan anda.
+        </p>
+
+    </div>
+
+
+    <div class="calculator-card">
+
+        <!-- GAJI BERSIH -->
+
+        <div class="input-group">
+
+            <label>Gaji Bersih Bulanan</label>
+
+            <div class="input-wrapper">
+
+                <span class="currency">RM</span>
+
+                <input
+                    type="number"
+                    id="salary"
+                    placeholder="Contoh: 3000"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- KOMITMEN -->
+
+        <div class="input-group">
+
+            <label>Komitmen Bulanan</label>
+
+            <div class="input-wrapper">
+
+                <span class="currency">RM</span>
+
+                <input
+                    type="number"
+                    id="commitment"
+                    placeholder="Contoh: 800"
+                >
+
+            </div>
+
+        </div>
+
+
+        <button onclick="calculateEligibility()">
+            Kira Kelayakan
+        </button>
+
+
+        <!-- RESULTS -->
+
+        <div class="results">
+
+            <div class="result-card">
+
+                <div class="result-title">
+                    DSR Maksimum (60%)
+                </div>
+
+                <div class="result-value" id="maxDsr">
+                    RM 0
+                </div>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <div class="result-title">
+                    Kelayakan Bulanan
+                </div>
+
+                <div class="result-value" id="monthlyEligibility">
+                    RM 0
+                </div>
+
+            </div>
+
+
+            <div class="result-card highlight">
+
+                <div class="result-title">
+                    Anggaran Kelayakan Rumah
+                </div>
+
+                <div class="result-value" id="houseEligibility">
+                    RM 0
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- INFO -->
+
+        <div class="info">
+
+            <strong>Anggaran kiraan berdasarkan:</strong>
+
+            <br>
+
+            • DSR: 60%
+
+            <br>
+
+            • Interest bank: 4% setahun
+
+            <br>
+
+            • Tempoh pinjaman: 35 tahun
+
+            <br>
+
+            • Downpayment: 10%
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+
+        © 2026 Property Calculator. All Rights Reserved.
+
+    </div>
+
+</div>
+
+
+<script>
+
+function formatCurrency(number) {
+
+    return new Intl.NumberFormat('ms-MY', {
+        style: 'currency',
+        currency: 'MYR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    }).format(number);
+
+}
+
+
+function calculateEligibility() {
+
+    const salary =
+        parseFloat(
+            document.getElementById('salary').value
+        ) || 0;
+
+
+    const commitment =
+        parseFloat(
+            document.getElementById('commitment').value
+        ) || 0;
+
+
+    // DSR 60%
+
+    const maxDsr =
+        salary * 0.60;
+
+
+    // Kelayakan bulanan
+
+    let monthlyEligibility =
+        maxDsr - commitment;
+
+
+    if (monthlyEligibility < 0) {
+
+        monthlyEligibility = 0;
+
+    }
+
+
+    /*
+        Loan Calculation
+
+        Interest:
+        4% setahun
+
+        Tempoh:
+        35 tahun
+    */
+
+
+    const annualInterest =
+        0.04;
+
+
+    const monthlyInterest =
+        annualInterest / 12;
+
+
+    const years =
+        35;
+
+
+    const totalMonths =
+        years * 12;
+
+
+    /*
+        Loan Amount Formula
+
+        P =
+        M ×
+        ((1+r)^n - 1)
+
+        /
+        (r × (1+r)^n)
+    */
+
+
+    let loanAmount = 0;
+
+
+    if (monthlyEligibility > 0) {
+
+        const r =
+            monthlyInterest;
+
+
+        const n =
+            totalMonths;
+
+
+        loanAmount =
+            monthlyEligibility *
+            (
+                (Math.pow(1 + r, n) - 1)
+                /
+                (
+                    r *
+                    Math.pow(1 + r, n)
+                )
+            );
+
+    }
+
+
+    /*
+        Downpayment 10%
+
+        Loan = 90%
+
+        Harga rumah =
+        Loan / 0.90
+    */
+
+
+    const houseEligibility =
+        loanAmount / 0.90;
+
+
+    // DISPLAY
+
+
+    document.getElementById('maxDsr').innerText =
+        formatCurrency(maxDsr);
+
+
+    document.getElementById('monthlyEligibility').innerText =
+        formatCurrency(monthlyEligibility);
+
+
+    document.getElementById('houseEligibility').innerText =
+        formatCurrency(houseEligibility);
+
+}
+
+</script>
+
+</body>
+</html>
