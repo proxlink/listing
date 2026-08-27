@@ -196,7 +196,66 @@
       .login-input-wrap input,.login-submit{height:58px;font-size:16px}.login-submit{font-size:17px}
     }
 
-  </style>
+  
+/* Analytics filter alignment fix */
+.analytics-filter{
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+}
+
+.analytics-filter label{
+  width:100%;
+  text-align:center;
+}
+
+.analytics-filter select{
+  width:260px;
+  min-width:260px;
+  box-sizing:border-box;
+}
+
+.analytics-custom-dates{
+  width:100%;
+  justify-content:center;
+  align-items:center;
+}
+
+.analytics-custom-dates input{
+  width:260px;
+  min-width:260px;
+  box-sizing:border-box;
+}
+
+#applyCustomAnalytics{
+  box-sizing:border-box;
+}
+
+@media(max-width:700px){
+  .analytics-filter{
+    width:100%;
+    box-sizing:border-box;
+    align-items:center;
+  }
+
+  .analytics-filter select,
+  .analytics-custom-dates,
+  .analytics-custom-dates input,
+  #applyCustomAnalytics{
+    width:100% !important;
+    min-width:0 !important;
+    max-width:100% !important;
+    box-sizing:border-box;
+  }
+
+  .analytics-custom-dates{
+    align-items:center;
+    justify-content:center;
+  }
+}
+
+</style>
 </head>
 <body>
 <div class="wrap">
