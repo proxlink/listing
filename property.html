@@ -11,7 +11,7 @@
 :root{--ink:#151515;--soft:#f7f6f2;--line:#e8e6df;--gold:#b28a43;--muted:#777}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--soft);color:var(--ink)}
 button{font:inherit}
-.property-page{max-width:900px;margin:25px auto 45px;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,.045)}.back-home{display:flex;align-items:center;justify-content:center;width:100%;padding:14px 18px;background:#fff;color:var(--ink);text-decoration:none;font-weight:800;border-bottom:1px solid var(--line)}.back-home:hover{background:#f7f6f2}
+.property-page{max-width:900px;margin:25px auto 45px;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,.045)}.back-home{display:flex;align-items:center;justify-content:center;width:100%;padding:14px 18px;background:#fff;color:var(--ink);text-decoration:none;font-weight:800;border:1px solid var(--line);border-radius:12px;margin-top:9px}.back-home:hover{background:#f7f6f2}
 .gallery{background:#111}.mainimg{width:100%;height:500px;object-fit:contain;display:block;cursor:zoom-in;touch-action:pan-y}
 .thumbs{display:flex;gap:8px;overflow:auto;padding:10px}.thumb{width:78px;height:60px;object-fit:cover;border-radius:8px;opacity:.6;cursor:pointer;border:2px solid transparent}.thumb.selected{opacity:1;border-color:#fff}
 .detail{padding:23px}.detailtag{display:inline-block;background:#f0ece2;color:#795b27;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:900}
@@ -50,7 +50,7 @@ async function loadProperty(){
 function renderProperty(){
  const x=property,im=currentGallery,first=im[0]||"";
  $("propertyRoot").className="property-page";
- $("propertyRoot").innerHTML=`<a class="back-home" href="index.html">← Back to Home</a><div class="gallery">
+ $("propertyRoot").innerHTML=`<div class="gallery">
  ${first?`<img id="mainimg" class="mainimg" src="${esc(first)}" alt="${esc(x.title)}">`:`<div class="mainimg" style="display:grid;place-items:center;color:white;font-size:70px">🏠</div>`}
  ${im.length>1?`<div class="thumbs">${im.map((u,i)=>`<img class="thumb ${i?"":"selected"}" src="${esc(u)}" onclick="changeImgIndex(${i})" alt="${esc(x.title)}">`).join("")}</div>`:""}</div>
  <div class="detail"><span class="detailtag">${esc(x.listing_type)} · ${esc(x.status||"Available")}</span>
@@ -58,7 +58,7 @@ function renderProperty(){
  <div class="detailgrid">${x.bedrooms!=null?`<div class="spec"><b>🛏 ${esc(x.bedrooms)}</b><span>Bilik Tidur</span></div>`:""}${x.bathrooms!=null?`<div class="spec"><b>🚿 ${esc(x.bathrooms)}</b><span>Bilik Air</span></div>`:""}${x.built_up?`<div class="spec"><b>${esc(x.built_up)}</b><span>Built-up</span></div>`:""}${x.land_area?`<div class="spec"><b>${esc(x.land_area)}</b><span>Land Area</span></div>`:""}</div>
  ${x.description?`<h3>Property Details</h3><div class="desc">${esc(x.description)}</div>`:""}
  ${x.whatsapp&&x.status!=="Sold"?`<a class="wa" target="_blank" rel="noopener" onclick="trackEvent('whatsapp_click','${esc(x.id)}')" href="https://wa.me/${"6"+String(x.whatsapp).replace(/\D/g,"")}?text=${encodeURIComponent("Hi, saya berminat dengan property: "+x.title+(x.location?" - "+x.location:""))}">💬 WhatsApp Agent</a>`:""}
- <button class="share" type="button" onclick="shareListing('${esc(x.title)}')">↗ Share Property</button></div>`;
+ <button class="share" type="button" onclick="shareListing('${esc(x.title)}')">↗ Share Property</button><a class="back-home" href="index.html">← Back to Home</a></div>`;
  const main=$("mainimg");if(main){main.onclick=()=>openFullscreen(currentGalleryIndex);main.ontouchstart=e=>{swipeStartX=e.changedTouches[0].clientX};main.ontouchend=e=>handleSwipe(e.changedTouches[0].clientX)}
 }
 window.changeImgIndex=i=>{if(!currentGallery[i])return;currentGalleryIndex=i;const m=$("mainimg");if(m)m.src=currentGallery[i];document.querySelectorAll(".thumb").forEach((x,n)=>x.classList.toggle("selected",n===i));};
