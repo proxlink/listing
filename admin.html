@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#111111">
-  <title>CariHouse.my - Admin Panel</title>
+  <title>Property Listing - Admin Panel</title>
   <!-- Storage deletion uses Supabase Edge Function -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
@@ -64,15 +64,6 @@
     .page-btn.active{background:#111;color:#fff;border-color:#111}
     .page-btn:disabled{opacity:.4;cursor:default}
 
-
-    .admin-nav{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px}
-    .admin-nav button{flex:1;min-width:0}
-    .section-view{display:none}.section-view.active{display:block}
-    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:18px;z-index:9999}.modal-overlay.open{display:flex}
-    .modal-box{width:min(920px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.25);padding:20px}
-    .modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.modal-close{background:#eee;color:#111;width:40px;height:40px;padding:0;font-size:22px}
-    .analytics-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.analytics-card{background:#fff;border-radius:18px;padding:18px;box-shadow:0 3px 18px rgba(0,0,0,.06)}.analytics-label{font-size:13px;color:#777;font-weight:700}.analytics-number{font-size:30px;font-weight:900;margin-top:8px}.analytics-filter{background:#fff;border-radius:18px;padding:14px 20px;box-shadow:0 3px 18px rgba(0,0,0,.06);margin-top:14px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}.analytics-filter label{margin:0;font-size:13px}.analytics-filter select,.analytics-filter input{width:auto;min-width:150px}.analytics-custom-dates{display:none;align-items:center;gap:8px;flex-wrap:wrap}.analytics-custom-dates.show{display:flex}.analytics-list{background:#fff;border-radius:18px;padding:20px;box-shadow:0 3px 18px rgba(0,0,0,.06);margin-top:14px;margin-bottom:14px}.analytics-row{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-top:1px solid #eee}.analytics-row:first-child{border-top:0}
-    @media(max-width:700px){.analytics-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.analytics-filter{width:100%;max-width:100%;padding:14px;justify-content:center;box-sizing:border-box;overflow:visible}.analytics-filter label{width:100%;text-align:center}.analytics-filter select{width:100%;min-width:0;max-width:100%;box-sizing:border-box}.analytics-filter input{min-width:0;box-sizing:border-box}.analytics-custom-dates{width:100%;max-width:100%;min-width:0;box-sizing:border-box}.analytics-custom-dates.show{display:flex;width:100%;max-width:100%;min-width:0;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;box-sizing:border-box}.analytics-custom-dates input{flex:1 1 0!important;width:0!important;min-width:0!important;max-width:none!important;box-sizing:border-box}.analytics-custom-dates .muted{flex:0 0 20px;width:20px;min-width:20px;text-align:center;font-size:0;white-space:nowrap;box-sizing:border-box}.analytics-custom-dates .muted::after{content:"-";font-size:28px;line-height:1}.analytics-custom-dates #applyCustomAnalytics{flex:0 0 100%;width:100%;max-width:100%;box-sizing:border-box;margin:8px 0 0}.modal-overlay{padding:10px}.modal-box{max-height:95vh;padding:14px}}
 
     /* House background - login & Add Listing only */
     body.login-view{
@@ -134,6 +125,8 @@
     .password-toggle{position:absolute;right:13px;top:50%;transform:translateY(-50%);width:34px;height:34px;padding:5px;background:transparent;color:#929292;border-radius:8px;display:grid;place-items:center;z-index:2}
     .password-toggle:hover{background:#f3f3f3}
     .password-toggle svg{width:23px;height:23px;display:block}
+    /* Hide browser native password reveal icon so only the custom eye button is shown. */
+    #password::-ms-reveal,#password::-ms-clear{display:none}
     .login-submit-wrap{margin-top:4px}
     .login-submit{width:100%;height:62px;border-radius:13px;font-size:18px;font-weight:800}
     .login-form-redesign .msg{text-align:center;min-height:18px}
@@ -160,8 +153,8 @@
     </div>
 
     <div class="login-title">
-      <div>CariHouse.my</div>
-      <div class="gold-text">Listing Management</div>
+      <div>Property Listing</div>
+      <div class="gold-text">Management</div>
     </div>
 
     <div class="login-divider" aria-hidden="true"><span></span><b></b><span></span></div>
@@ -199,90 +192,14 @@
       <button id="logoutBtn" class="logout-crimson">Logout</button>
     </div>
 
-    <div class="admin-nav">
-      <button id="addListingNav" type="button" class="primary">+ Add Listing</button>
-    </div>
-
-    <div id="analyticsSection" class="section-view active">
-      <div class="analytics-grid">
-        <div class="analytics-card"><div class="analytics-label">Website Visitors</div><div id="analyticsVisitors" class="analytics-number">0</div></div>
-        <div class="analytics-card"><div class="analytics-label">WhatsApp Agent Click</div><div id="analyticsWhatsapp" class="analytics-number">0</div></div>
-        <div class="analytics-card"><div class="analytics-label">Top Properties View</div><div id="analyticsPropertyViews" class="analytics-number">0</div></div>
-        <div class="analytics-card"><div class="analytics-label">Share Property Click</div><div id="analyticsShares" class="analytics-number">0</div></div>
-      </div>
-      <div class="analytics-filter">
-        <label for="analyticsRange">Filter Analytics</label>
-        <select id="analyticsRange">
-          <option value="today">Today</option>
-          <option value="7days">7 Days</option>
-          <option value="month">Month</option>
-          <option value="year">Year</option>
-          <option value="custom">Custom Date</option>
-        </select>
-        <div id="analyticsCustomDates" class="analytics-custom-dates">
-          <input id="analyticsStartDate" type="date" aria-label="Start date">
-          <span class="muted">hingga</span>
-          <input id="analyticsEndDate" type="date" aria-label="End date">
-          <button id="applyCustomAnalytics" class="secondary" type="button">Apply</button>
-        </div>
-      </div>
-      <div class="analytics-list">
-        <div class="top" style="margin-bottom:8px"><div><h2>Top Properties View</h2></div><button id="refreshAnalytics" class="secondary" type="button">Refresh</button></div>
-        <div id="topPropertiesAnalytics" class="muted">Loading...</div>
-      </div>
-    </div>
-
-    <div id="listingsSection" class="section-view active">
     <div class="card">
-      <div class="top" style="margin-bottom:8px">
-        <div>
-          <h2>Listings</h2>
-          <div id="count" class="muted"></div>
-        </div>
-        <input id="search" style="max-width:260px" placeholder="🔍 Cari listing...">
-      </div>
-      <script>
-        function syncListingFilterWidth(){
-          const search = document.getElementById("search");
-          const filter = document.getElementById("listingFilter");
-          if(!search || !filter) return;
-          const width = search.getBoundingClientRect().width;
-          filter.style.width = width + "px";
-          filter.style.minWidth = width + "px";
-          filter.style.maxWidth = width + "px";
-        }
-        window.addEventListener("load", syncListingFilterWidth);
-        window.addEventListener("resize", syncListingFilterWidth);
-      </script>
-      <div class="listing-filter-wrap">
-        <select id="listingFilter" class="listing-filter">
-          <option value="Available" selected>Available</option>
-          <option value="Reserved">Reserved</option>
-          <option value="Sold">Sold</option>
-          <option value="New">Rumah Baru</option>
-          <option value="Subsale">Subsale</option>
-        </select>
-      </div>
-      <div id="listings"></div>
-<div id="pagination" class="pagination"></div>
-    </div>
+      <h2 id="formTitle">Add Listing</h2>
+      <p class="muted">Tambah rumah baru atau subsale.</p>
 
-    </div>
-
-    <div id="addListingModal" class="modal-overlay" aria-hidden="true">
-      <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="formTitle">
-        <div class="modal-head"><h2 id="formTitle">Add Listing</h2><button id="closeAddListingModal" type="button" class="modal-close">×</button></div>
-        <p class="muted">Tambah rumah baru atau subsale.</p>
-
-        <form id="propertyForm">
+      <form id="propertyForm">
         <input type="hidden" id="propertyId">
 
         <div class="grid">
-          <div>
-            <label>Nama Taman / Projek</label>
-            <input id="estateName" placeholder="Contoh: Taman Adil Jaya">
-          </div>
-
           <div>
             <label>Tajuk Hartanah *</label>
             <input id="title" required placeholder="Contoh: 2 Storey Semi-D">
@@ -378,7 +295,39 @@
         <div id="formMsg" class="msg"></div>
       </form>
     </div>
+
+    <div class="card">
+      <div class="top" style="margin-bottom:8px">
+        <div>
+          <h2>Listings</h2>
+          <div id="count" class="muted"></div>
+        </div>
+        <input id="search" style="max-width:260px" placeholder="🔍 Cari listing...">
       </div>
+      <script>
+        function syncListingFilterWidth(){
+          const search = document.getElementById("search");
+          const filter = document.getElementById("listingFilter");
+          if(!search || !filter) return;
+          const width = search.getBoundingClientRect().width;
+          filter.style.width = width + "px";
+          filter.style.minWidth = width + "px";
+          filter.style.maxWidth = width + "px";
+        }
+        window.addEventListener("load", syncListingFilterWidth);
+        window.addEventListener("resize", syncListingFilterWidth);
+      </script>
+      <div class="listing-filter-wrap">
+        <select id="listingFilter" class="listing-filter">
+          <option value="Available" selected>Available</option>
+          <option value="Reserved">Reserved</option>
+          <option value="Sold">Sold</option>
+          <option value="New">Rumah Baru</option>
+          <option value="Subsale">Subsale</option>
+        </select>
+      </div>
+      <div id="listings"></div>
+<div id="pagination" class="pagination"></div>
     </div>
   </section>
 </div>
@@ -584,7 +533,7 @@ async function checkSession(){
 }
 
 let inactivityTimer = null;
-const INACTIVITY_LIMIT = 30 * 60 * 1000;
+const INACTIVITY_LIMIT = 20 * 60 * 1000;
 
 function resetInactivityTimer(){
   clearTimeout(inactivityTimer);
@@ -601,6 +550,13 @@ function resetInactivityTimer(){
 
 function showLogin(){
   clearTimeout(inactivityTimer);
+  const loginMessage = $("loginMsg");
+  if(loginMessage){
+    loginMessage.textContent = "";
+    loginMessage.className = "msg";
+    loginMessage.classList.remove("fade-out");
+    loginMessage.style.opacity = "1";
+  }
   document.body.classList.add("login-view");
   document.body.classList.remove("app-view");
   $("login").style.display = "block";
@@ -613,7 +569,6 @@ function showApp(){
   $("app").style.display = "block";
   resetInactivityTimer();
   loadListings();
-  loadAdminAnalytics();
 }
 
 $("loginForm").addEventListener("submit", async e=>{
@@ -628,6 +583,13 @@ $("loginForm").addEventListener("submit", async e=>{
   });
   if(error) return showMsg($("loginMsg"), error.message);
   $("loginForm").reset();
+  const loginMessage = $("loginMsg");
+  if(loginMessage){
+    loginMessage.textContent = "";
+    loginMessage.className = "msg";
+    loginMessage.classList.remove("fade-out");
+    loginMessage.style.opacity = "1";
+  }
   showApp();
 });
 
@@ -735,7 +697,6 @@ $("propertyForm").addEventListener("submit", async e=>{
     }
 
     const payload = {
-      estate_name: $("estateName").value.trim(),
       title: $("title").value.trim(),
       listing_type: $("listingType").value,
       location: $("location").value.trim(),
@@ -762,7 +723,6 @@ $("propertyForm").addEventListener("submit", async e=>{
     if(result.error) throw result.error;
 
     showMsg($("formMsg"), id ? "Listing berjaya dikemaskini." : "Listing berjaya ditambah.", true);
-    closeAddListingModal();
     resetForm();
     await loadListings();
   }catch(err){
@@ -787,7 +747,7 @@ function resetForm(){
   existingImages = [];
 }
 
-$("cancelBtn").addEventListener("click", ()=>{resetForm();closeAddListingModal()});
+$("cancelBtn").addEventListener("click", resetForm);
 
 async function deletePropertyImages(x){
   const urls = Array.isArray(x.images) ? x.images : [];
@@ -800,7 +760,7 @@ async function deletePropertyRecord(id){
   if(!x || !confirm(`Delete "${x.title}"?\n\nSemua gambar listing ini juga akan dipadam daripada Storage.`)) return;
 
   try{
-    // await deletePropertyImages(x);
+    await deletePropertyImages(x);
 
     const {error} = await sb.from("properties").delete().eq("id",id);
     if(error) throw error;
@@ -836,7 +796,7 @@ function renderListings(){
       x.listing_type===activeListingFilter && x.status!=="Sold";
 
     const searchMatch =
-      !q || [x.estate_name,x.title,x.location,x.listing_type,x.status,x.remark]
+      !q || [x.title,x.location,x.listing_type,x.status,x.remark]
         .some(v=>String(v||"").toLowerCase().includes(q));
 
     return filterMatch && searchMatch;
@@ -908,7 +868,6 @@ window.editListing = function(id){
   if(!x) return;
 
   $("propertyId").value = x.id;
-  $("estateName").value = x.estate_name || "";
   $("title").value = x.title || "";
   $("listingType").value = x.listing_type || "New";
   $("location").value = x.location || "";
@@ -931,91 +890,8 @@ window.editListing = function(id){
   $("formTitle").textContent = "Edit Listing";
   $("saveBtn").textContent = "Update Listing";
   $("cancelBtn").classList.remove("hidden");
-  openAddListingModal();
+  window.scrollTo({top:0,behavior:"smooth"});
 };
-
-function openAddListingModal(){ $("addListingModal").classList.add("open"); $("addListingModal").setAttribute("aria-hidden","false"); document.body.style.overflow="hidden"; }
-function closeAddListingModal(){ $("addListingModal").classList.remove("open"); $("addListingModal").setAttribute("aria-hidden","true"); document.body.style.overflow=""; }
-$("addListingNav").addEventListener("click",()=>{resetForm();openAddListingModal()});
-$("closeAddListingModal").addEventListener("click",closeAddListingModal);
-$("addListingModal").addEventListener("click",e=>{if(e.target===$("addListingModal"))closeAddListingModal()});
-$("refreshAnalytics").addEventListener("click",loadAdminAnalytics);
-$("analyticsRange").addEventListener("change",()=>{
-  const isCustom=$("analyticsRange").value==="custom";
-  $("analyticsCustomDates").classList.toggle("show",isCustom);
-  if(!isCustom) loadAdminAnalytics();
-});
-$("applyCustomAnalytics").addEventListener("click",loadAdminAnalytics);
-
-function getAnalyticsDateRange(){
-  const type=$("analyticsRange").value;
-  const now=new Date();
-  const startOfToday=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-  let start=null,end=null;
-
-  if(type==="today"){
-    start=startOfToday;
-    end=new Date(startOfToday);
-    end.setDate(end.getDate()+1);
-  }else if(type==="7days"){
-    start=new Date(startOfToday);
-    start.setDate(start.getDate()-6);
-    end=new Date(startOfToday);
-    end.setDate(end.getDate()+1);
-  }else if(type==="month"){
-    start=new Date(now.getFullYear(),now.getMonth(),1);
-    end=new Date(now.getFullYear(),now.getMonth()+1,1);
-  }else if(type==="year"){
-    start=new Date(now.getFullYear(),0,1);
-    end=new Date(now.getFullYear()+1,0,1);
-  }else if(type==="custom"){
-    const startValue=$("analyticsStartDate").value;
-    const endValue=$("analyticsEndDate").value;
-    if(!startValue || !endValue){
-      $("topPropertiesAnalytics").textContent="Sila pilih Start Date dan End Date.";
-      return {invalid:true};
-    }
-    start=new Date(startValue+"T00:00:00");
-    end=new Date(endValue+"T00:00:00");
-    end.setDate(end.getDate()+1);
-    if(start>=end){
-      $("topPropertiesAnalytics").textContent="Julat tarikh tidak sah.";
-      return {invalid:true};
-    }
-  }
-  return {start:start.toISOString(),end:end.toISOString()};
-}
-
-async function loadAdminAnalytics(){
-  $("analyticsVisitors").textContent="…";$("analyticsWhatsapp").textContent="…";$("analyticsPropertyViews").textContent="…";$("analyticsShares").textContent="…";$("topPropertiesAnalytics").textContent="Loading...";
-  const range=getAnalyticsDateRange();
-  if(range.invalid){$("analyticsVisitors").textContent="0";$("analyticsWhatsapp").textContent="0";$("analyticsPropertyViews").textContent="0";$("analyticsShares").textContent="0";return;}
-
-  let query=sb.from("analytics_events").select("event_type,property_id,created_at").order("created_at",{ascending:false});
-  query=query.gte("created_at",range.start).lt("created_at",range.end);
-  const {data:events,error}=await query;
-  if(error){$("analyticsVisitors").textContent="0";$("analyticsWhatsapp").textContent="0";$("analyticsPropertyViews").textContent="0";$("analyticsShares").textContent="0";$("topPropertiesAnalytics").textContent="Analytics belum dapat dimuatkan: "+(error.message||"Unknown error");return;}
-
-  const rows=events||[];
-  const visitors=rows.filter(e=>e.event_type==="page_view").length;
-  const whatsapp=rows.filter(e=>e.event_type==="whatsapp_click").length;
-  const propertyViews=rows.filter(e=>e.event_type==="property_view").length;
-  const shares=rows.filter(e=>["share_property","share_click","share_property_click"].includes(e.event_type)).length;
-  $("analyticsVisitors").textContent=visitors.toLocaleString("en-MY");$("analyticsWhatsapp").textContent=whatsapp.toLocaleString("en-MY");$("analyticsPropertyViews").textContent=propertyViews.toLocaleString("en-MY");$("analyticsShares").textContent=shares.toLocaleString("en-MY");
-
-  const propIds=[...new Set(rows.filter(e=>e.event_type==="property_view"&&e.property_id).map(e=>e.property_id))];
-  let top=[];
-  if(propIds.length){
-    const {data:props,error:propsError}=await sb.from("properties").select("id,title,location,status").in("id",propIds);
-    if(!propsError){
-      const map=new Map((props||[]).filter(p=>p.status!=="Sold").map(p=>[p.id,p]));
-      const counts=new Map();
-      rows.filter(e=>e.event_type==="property_view"&&e.property_id&&map.has(e.property_id)).forEach(e=>counts.set(e.property_id,(counts.get(e.property_id)||0)+1));
-      top=[...counts.entries()].map(([id,views])=>({...map.get(id),views})).sort((a,b)=>b.views-a.views).slice(0,10);
-    }
-  }
-  $("topPropertiesAnalytics").innerHTML=top.length?top.map((p,i)=>`<div class="analytics-row"><span>${i+1}. ${esc(p.title)}</span><strong>${p.views} views</strong></div>`).join(""):"Belum ada data Top Properties View.";
-}
 
 sb.auth.onAuthStateChange((_event, session)=>{
   if(session) showApp();
