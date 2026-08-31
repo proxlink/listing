@@ -130,6 +130,7 @@
     .login-input-wrap input{height:62px;border:1.5px solid #d8d8d8;border-radius:13px;padding:0 52px;font-size:17px;background:#fff;outline:none;box-shadow:none}
     .login-input-wrap input:focus{border-color:#b28a43;box-shadow:0 0 0 3px rgba(178,138,67,.10)}
     .login-input-wrap input::placeholder{color:#9a9a9a}
+    #password::-ms-reveal,#password::-ms-clear{display:none}
     .input-icon{position:absolute;left:17px;top:50%;transform:translateY(-50%);width:24px;height:24px;color:#929292;pointer-events:none;z-index:1}
     .password-toggle{position:absolute;right:13px;top:50%;transform:translateY(-50%);width:34px;height:34px;padding:5px;background:transparent;color:#929292;border-radius:8px;display:grid;place-items:center;z-index:2}
     .password-toggle:hover{background:#f3f3f3}
@@ -601,12 +602,14 @@ function resetInactivityTimer(){
 
 function showLogin(){
   clearTimeout(inactivityTimer);
+  clearLoginMessage();
   document.body.classList.add("login-view");
   document.body.classList.remove("app-view");
   $("login").style.display = "block";
   $("app").style.display = "none";
 }
 function showApp(){
+  clearLoginMessage();
   document.body.classList.remove("login-view");
   document.body.classList.add("app-view");
   $("login").style.display = "none";
@@ -616,18 +619,41 @@ function showApp(){
   loadAdminAnalytics();
 }
 
+let loginMessageTimer = null;
+function clearLoginMessage(){
+  if(loginMessageTimer){
+    clearTimeout(loginMessageTimer);
+    loginMessageTimer = null;
+  }
+  const loginMessage = $("loginMsg");
+  loginMessage.textContent = "";
+  loginMessage.className = "msg";
+  loginMessage.style.opacity = "1";
+}
+
 $("loginForm").addEventListener("submit", async e=>{
   e.preventDefault();
+  clearLoginMessage();
   showMsg($("loginMsg"), "Logging in...", true);
   const loggingMessage = $("loginMsg");
   loggingMessage.classList.remove("fade-out");
-  setTimeout(()=>{ loggingMessage.classList.add("fade-out"); }, 3000);
+  loginMessageTimer = setTimeout(()=>{
+    loggingMessage.classList.add("fade-out");
+    loginMessageTimer = null;
+  }, 3000);
   const {error} = await sb.auth.signInWithPassword({
     email: $("email").value.trim(),
     password: $("password").value
   });
-  if(error) return showMsg($("loginMsg"), error.message);
+  if(error){
+    if(loginMessageTimer){
+      clearTimeout(loginMessageTimer);
+      loginMessageTimer = null;
+    }
+    return showMsg($("loginMsg"), error.message);
+  }
   $("loginForm").reset();
+  clearLoginMessage();
   showApp();
 });
 
