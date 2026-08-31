@@ -279,6 +279,11 @@
 
         <div class="grid">
           <div>
+            <label>Nama Taman / Projek</label>
+            <input id="estateName" placeholder="Contoh: Taman Adil Jaya">
+          </div>
+
+          <div>
             <label>Tajuk Hartanah *</label>
             <input id="title" required placeholder="Contoh: 2 Storey Semi-D">
           </div>
@@ -730,6 +735,7 @@ $("propertyForm").addEventListener("submit", async e=>{
     }
 
     const payload = {
+      estate_name: $("estateName").value.trim(),
       title: $("title").value.trim(),
       listing_type: $("listingType").value,
       location: $("location").value.trim(),
@@ -830,7 +836,7 @@ function renderListings(){
       x.listing_type===activeListingFilter && x.status!=="Sold";
 
     const searchMatch =
-      !q || [x.title,x.location,x.listing_type,x.status,x.remark]
+      !q || [x.estate_name,x.title,x.location,x.listing_type,x.status,x.remark]
         .some(v=>String(v||"").toLowerCase().includes(q));
 
     return filterMatch && searchMatch;
@@ -902,6 +908,7 @@ window.editListing = function(id){
   if(!x) return;
 
   $("propertyId").value = x.id;
+  $("estateName").value = x.estate_name || "";
   $("title").value = x.title || "";
   $("listingType").value = x.listing_type || "New";
   $("location").value = x.location || "";
