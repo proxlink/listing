@@ -58,7 +58,7 @@ function renderProperty(){
  <div class="detailgrid">${x.bedrooms!=null?`<div class="spec"><b>🛏 ${esc(x.bedrooms)}</b><span>Bilik Tidur</span></div>`:""}${x.bathrooms!=null?`<div class="spec"><b>🚿 ${esc(x.bathrooms)}</b><span>Bilik Air</span></div>`:""}${x.built_up?`<div class="spec"><b>${esc(x.built_up)}</b><span>Built-up</span></div>`:""}${x.land_area?`<div class="spec"><b>${esc(x.land_area)}</b><span>Land Area</span></div>`:""}</div>
  ${x.description?`<h3>Property Details</h3><div class="desc">${esc(x.description)}</div>`:""}
  ${x.whatsapp&&x.status!=="Sold"?`<a class="wa" target="_blank" rel="noopener" onclick="trackEvent('whatsapp_click','${esc(x.id)}')" href="https://wa.me/${"6"+String(x.whatsapp).replace(/\D/g,"")}?text=${encodeURIComponent("Hi, saya berminat dengan property: "+x.title+(x.location?" - "+x.location:""))}">💬 WhatsApp Agent</a>`:""}
- <button class="share" type="button" onclick="shareListing('${esc(x.title)}')">↗ Share Property</button><a class="back-home" href="index.html">← Back to Home</a></div>`;
+ <button class="share" type="button" onclick="shareListing('${esc(x.title)}')">↗ Share Property</button><a class="back-home" href="https://carihouse.my">← Back to Home</a></div>`;
  const main=$("mainimg");if(main){main.onclick=()=>openFullscreen(currentGalleryIndex);main.ontouchstart=e=>{swipeStartX=e.changedTouches[0].clientX};main.ontouchend=e=>handleSwipe(e.changedTouches[0].clientX)}
 }
 window.changeImgIndex=i=>{if(!currentGallery[i])return;currentGalleryIndex=i;const m=$("mainimg");if(m)m.src=currentGallery[i];document.querySelectorAll(".thumb").forEach((x,n)=>x.classList.toggle("selected",n===i));};
